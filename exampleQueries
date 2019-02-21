@@ -1,13 +1,12 @@
 mutation {
   createBreadCrumb(element: "div", type: "click") {
-		id
+		_id
   }
 }
 
-
 {
   breadCrumbs {
-    id
+    _id
     element
     type
     value

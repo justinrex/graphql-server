@@ -13,23 +13,22 @@ module.exports = {
         {/*options*/},
         (err, doc) => {
           if (err) reject(err)
-          resolve(doc.ops)
+          resolve()
           client.close()
         }
       )
     })
   })
   ),
-  all: collection => (new Promise((resolve, reject) => {
-      MongoClient.connect(url, options, (err, client) => {
-        if (err) reject(err)
+  all: collection => new Promise((resolve, reject) => {
+    MongoClient.connect(url, options, (err, client) => {
+      if (err) reject(err)
 
-        client.db(dbName).collection(collection).find().toArray((err, docs) => {
-          if (err) reject(err)
-          resolve(docs)
-          client.close()
-        })
+      client.db(dbName).collection(collection).find().toArray((err, docs) => {
+        if (err) reject(err)
+        resolve(docs)
+        client.close()
       })
     })
-  ),
+    })
 }
