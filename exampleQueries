@@ -14,7 +14,11 @@ mutation {
   }
 }
 
-mongo cli commands
+start mongodb
+# `mongod --config /usr/local/etc/mongod.conf`
+
+mongo cli
+# run `mongo "mongodb://localhost:27017"`  in terminal
 
 # get all
 db.breadCrumb.find()
