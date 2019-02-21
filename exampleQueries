@@ -1,0 +1,23 @@
+mutation {
+  createBreadCrumb(element: "div", type: "click") {
+		id
+  }
+}
+
+
+{
+  breadCrumbs {
+    id
+    element
+    type
+    value
+  }
+}
+
+mongo cli commands
+
+# get all
+db.breadCrumb.find()
+
+# delete all
+db.breadCrumb.deleteMany({})
