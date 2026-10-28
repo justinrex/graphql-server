@@ -1,10 +1,14 @@
+# Run these operations separately at http://localhost:4000.
+
 mutation {
   createBreadCrumb(element: "div", type: "click") {
-		_id
+    _id
+    element
+    type
   }
 }
 
-{
+query {
   breadCrumbs {
     _id
     element
@@ -12,15 +16,3 @@ mutation {
     value
   }
 }
-
-start mongodb
-# `mongod --config /usr/local/etc/mongod.conf`
-
-mongo cli
-# run `mongo "mongodb://localhost:27017"`  in terminal
-
-# get all
-db.breadCrumb.find()
-
-# delete all
-db.breadCrumb.deleteMany({})
