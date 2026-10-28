@@ -1,15 +1,11 @@
-const { createBreadCrumb } = require('../mutations/breadCrumbs')
-const { getBreadCrumbs } = require('../queries/breadCrumbs')
+const BreadCrumb = require('../models/breadCrumb');
 
-// Resolvers define the technique for fetching the types in the schema.
-
-module.exports = {
-  resolvers: {
-    Query: {
-      breadCrumbs: getBreadCrumbs,
-    },
-    Mutation: {
-      createBreadCrumb: createBreadCrumb
-    }
-  }
+function createResolvers(model = BreadCrumb) {
+  return {
+    Query: { breadCrumbs: () => model.all() },
+    Mutation: { createBreadCrumb: (_root, args) => model.save({ ...args }) },
+    BreadCrumb: { _id: breadcrumb => breadcrumb._id.toString() },
+  };
 }
+
+module.exports = { resolvers: createResolvers(), createResolvers };
